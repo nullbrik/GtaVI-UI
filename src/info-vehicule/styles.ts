@@ -130,16 +130,8 @@ export const Retour = styled.div`
   font-size: 2.15vh;
 `;
 
-export const BoutonB = styled.span`
-  display: grid;
-  place-items: center;
+export const BoutonB = styled.svg`
+  display: block;
   width: 2.5vh;
   height: 2.5vh;
-  border-radius: 50%;
-  background: #fafafa;
-  box-shadow: 0 0 0 0.15vh #1d1b1c;
-  color: #1d1b1c;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-  font-size: 1.35vh;
 `;

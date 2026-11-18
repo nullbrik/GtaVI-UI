@@ -125,7 +125,10 @@ export function InfoVehicule({ marque, modele, annee = null, lignes, page = 1, p
       </Carte>
       <Retour>
         <Contour>Retour</Contour>
-        <BoutonB>B</BoutonB>
+        <BoutonB viewBox="-10 -10 20 20" aria-hidden>
+          <circle r="9.2" fill="#fafafa" stroke="#1d1b1c" strokeWidth="1.2" />
+          <path transform="translate(-0.8 0)" fillRule="evenodd" fill="#1d1b1c" d="M-3.2 -5H1.2C3.3 -5 4.4 -3.9 4.4 -2.4C4.4 -1.3 3.8 -0.5 2.9 -0.2C4.1 0.1 4.8 1 4.8 2.3C4.8 4 3.6 5 1.4 5H-3.2ZM-1.1 -3.3V-1H0.9C1.8 -1 2.3 -1.4 2.3 -2.15C2.3 -2.9 1.8 -3.3 0.9 -3.3ZM-1.1 0.6V3.3H1.1C2.1 3.3 2.7 2.8 2.7 1.95C2.7 1.1 2.1 0.6 1.1 0.6Z" />
+        </BoutonB>
       </Retour>
     </Bloc>
   );
