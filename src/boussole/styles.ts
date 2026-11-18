@@ -24,19 +24,19 @@ export const Cadre = styled.div`
 export const Piste = styled.div`
   position: absolute;
   left: -${DEMI_PISTE_VH}vh;
-  top: -0.2vh;
+  top: -0.35vh;
   width: ${DEMI_PISTE_VH * 2}vh;
-  height: 0.4vh;
-  border-radius: 0.2vh;
+  height: 0.7vh;
+  border-radius: 0.35vh;
   background: rgba(10, 15, 25, 0.22);
 `;
 
 export const Repere = styled.svg`
   position: absolute;
-  left: -0.75vh;
-  top: -0.75vh;
-  width: 1.5vh;
-  height: 1.5vh;
+  left: -0.875vh;
+  top: -0.875vh;
+  width: 1.75vh;
+  height: 1.75vh;
   overflow: visible;
 `;
 
