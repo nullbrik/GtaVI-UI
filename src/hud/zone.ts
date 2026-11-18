@@ -7,7 +7,7 @@ export interface Zone {
 
 export const ZONE_MINIMAP: Zone = { gauche: 0.0207, haut: 0.807, largeur: 0.152815625, hauteur: 0.1551 };
 
-export const HAUTEUR_GPS_VH = 4.26;
+export const HAUTEUR_GPS_VH = 5;
 export const ECART_GPS_VH = 0.74;
 
 export function cadreZone(z: Zone) {

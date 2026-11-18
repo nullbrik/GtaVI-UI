@@ -40,7 +40,7 @@ const Distance = styled.span`
 
 const Fleche = styled.div`
   flex: none;
-  width: 4.81vh;
+  width: 5.65vh;
   border-radius: 0 0.4vh 0.4vh 0;
   background: #31e7cd;
 
