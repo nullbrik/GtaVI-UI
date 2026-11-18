@@ -44,6 +44,11 @@ export const ECRANS: readonly Ecran[] = [
     ),
   },
   { cle: 'boussole', libelle: 'Boussole', rendu: () => <Boussole cap={357} destination={{ cap: 17, distance: 4750 }} /> },
+  {
+    cle: 'boussole-police',
+    libelle: 'Boussole police',
+    rendu: () => <Boussole cap={357} destination={{ cap: 17, distance: 4750 }} poursuite />,
+  },
   { cle: 'pause', libelle: 'Menu pause', rendu: () => <Pause nouveautes={['boutique']} surChoix={RIEN} surFermeture={RIEN} /> },
   { cle: 'garde-robe', libelle: 'Garde-robe', rendu: () => <GardeRobe liquide={407} banque={2480} surFermeture={RIEN} /> },
   { cle: 'roulette', libelle: 'Roulette d’armes', rendu: () => <Roulette emplacements={EMPLACEMENTS} equipee={null} /> },

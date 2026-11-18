@@ -111,15 +111,17 @@ function Cible({ distance }: { readonly distance: number }) {
 export function Boussole({
   cap,
   destination,
+  poursuite = false,
 }: {
   readonly cap: number;
   readonly destination: CibleBoussole | null;
+  readonly poursuite?: boolean;
 }) {
   const affiche = useCapLisse(cap);
   return (
     <Calque>
       <Cadre>
-        <Piste />
+        <Piste className={poursuite ? 'poursuite' : undefined} />
         {CARDINAUX.map((c) => {
           const x = position(affiche, c.cap);
           return x === null ? null : (

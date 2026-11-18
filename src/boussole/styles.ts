@@ -1,4 +1,22 @@
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
+
+const ROUGE = 'background: #e93542; box-shadow: 0 0 0 1px rgba(18, 16, 28, 0.85), 0 0 1vh 0.15vh rgba(233, 53, 66, 0.45);';
+const BLEU = 'background: #4d5bc7; box-shadow: 0 0 0 1px rgba(18, 16, 28, 0.85), 0 0 1vh 0.15vh rgba(77, 91, 199, 0.45);';
+
+const gyrophare = keyframes`
+  0%,
+  30% {
+    ${ROUGE}
+  }
+  50%,
+  80% {
+    ${BLEU}
+  }
+  100% {
+    ${ROUGE}
+  }
+`;
 
 export const RAYON_VH = 17.8;
 export const DEMI_PISTE_VH = 21.9;
@@ -29,14 +47,21 @@ export const Piste = styled.div`
   height: 0.7vh;
   border-radius: 0.35vh;
   background: rgba(10, 15, 25, 0.22);
+
+  &.poursuite {
+    top: -0.415vh;
+    height: 0.83vh;
+    border-radius: 0.2vh;
+    animation: ${gyrophare} 2s ease-in-out infinite;
+  }
 `;
 
 export const Repere = styled.svg`
   position: absolute;
-  left: -0.875vh;
-  top: -0.875vh;
-  width: 1.75vh;
-  height: 1.75vh;
+  left: -0.95vh;
+  top: -0.95vh;
+  width: 1.9vh;
+  height: 1.9vh;
   overflow: visible;
 `;
 
