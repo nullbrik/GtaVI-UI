@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 import type { ReactNode } from 'react';
 
+const RAYON_ARC = 12.6;
+const CIRCONFERENCE = 2 * Math.PI * RAYON_ARC;
+const SOMBRE = '#171a21';
+
 const Bloc = styled.div`
   position: fixed;
   top: 8.7vh;
@@ -45,43 +49,96 @@ const Rond = styled.svg`
   overflow: visible;
 `;
 
-function Pastille({ children, arc = false }: { readonly children: ReactNode; readonly arc?: boolean }) {
+const borner = (valeur: number) => Math.max(0, Math.min(1, valeur));
+
+function Pastille({ couleur, jauge, children }: { readonly couleur: string; readonly jauge: number; readonly children: ReactNode }) {
   return (
     <Rond viewBox="-14.5 -14.5 29 29" aria-hidden>
-      <circle r="12.25" fill="#363637" stroke="rgba(22, 24, 28, 0.7)" strokeWidth="4.5" />
-      {arc && <path d="M-0.44 -12.49A12.5 12.5 0 0 1 7.52 -9.98" fill="none" stroke="#3fe6cc" strokeWidth="2.6" />}
-      {children}
+      <circle r="14" fill="#303030" />
+      <circle r={RAYON_ARC} fill="none" stroke={SOMBRE} strokeWidth="2.1" />
+      <circle
+        r={RAYON_ARC}
+        fill="none"
+        stroke={couleur}
+        strokeWidth="2.1"
+        strokeDasharray={`${CIRCONFERENCE * borner(jauge)} ${CIRCONFERENCE}`}
+        transform="rotate(-90)"
+      />
+      <g transform="translate(-7.2 -7.2) scale(0.6)">{children}</g>
     </Rond>
   );
 }
 
+const VIOLET = '#c77ffc';
+const VERT = '#90df86';
+const BLEU = '#31f4d8';
+
+const BUCKME = (
+  <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+    <g stroke={SOMBRE} strokeWidth="4.6">
+      <path d="M10.4 3.4C9.2 3.4 8.6 4.2 8.6 5.4V17.2C8.6 18.6 10.2 19.8 12.8 19.8C16 19.8 18 17.6 18 14.8C18 12 16 10 13.4 10C11.8 10 10.4 10.8 9.6 12" />
+      <path d="M2.8 9.6H6M3.6 12.6H6M4.4 15.6H6" />
+    </g>
+    <g stroke={VIOLET} strokeWidth="2.6">
+      <path d="M10.4 3.4C9.2 3.4 8.6 4.2 8.6 5.4V17.2C8.6 18.6 10.2 19.8 12.8 19.8C16 19.8 18 17.6 18 14.8C18 12 16 10 13.4 10C11.8 10 10.4 10.8 9.6 12" />
+      <path d="M2.8 9.6H6M3.6 12.6H6M4.4 15.6H6" />
+    </g>
+  </g>
+);
+
+const PORTEFEUILLE = (
+  <>
+    <rect x="3" y="5.6" width="18" height="13" rx="2.4" fill={VERT} stroke={SOMBRE} strokeWidth="1.3" />
+    <path d="M6.2 8.4H15.4" stroke={SOMBRE} strokeWidth="1.3" strokeLinecap="round" />
+    <path d="M21 10.2H17.4C16.3 10.2 15.4 11.1 15.4 12.2C15.4 13.3 16.3 14.2 17.4 14.2H21" fill="none" stroke={SOMBRE} strokeWidth="1.3" />
+    <circle cx="17.6" cy="12.2" r="0.9" fill={SOMBRE} />
+  </>
+);
+
+const PLANQUE = (
+  <>
+    <path d="M12 2.6L20.4 9V21.4H3.6V9Z" fill={BLEU} stroke={SOMBRE} strokeWidth="1.3" strokeLinejoin="round" />
+    <text x="12" y="18.4" textAnchor="middle" fontFamily="Anton, sans-serif" fontSize="10" fill="#075a4e">
+      $
+    </text>
+  </>
+);
+
 const formater = (montant: number) => `$${Math.round(montant).toLocaleString('en-US')}`;
 
 export interface ProprietesArgent {
-  readonly liquide: number;
   readonly banque: number;
+  readonly liquide: number;
+  readonly planque?: number | null;
+  readonly jauges?: { readonly banque?: number; readonly liquide?: number; readonly planque?: number };
   readonly haut?: string;
 }
 
-export function Argent({ liquide, banque, haut }: ProprietesArgent) {
+export const LIQUIDE_MAX = 20000;
+
+export function Argent({ banque, liquide, planque = null, jauges = {}, haut }: ProprietesArgent) {
   return (
     <Bloc style={haut === undefined ? undefined : { top: haut }}>
       <Ligne>
-        <Montant>{formater(liquide)}</Montant>
-        <Pastille>
-          <rect x="-5.5" y="-3.6" width="11" height="7.2" rx="1" fill="#85e789" />
-          <rect x="2.6" y="-1.3" width="2.9" height="2.6" rx="0.6" fill="#233d21" />
+        <Montant>{formater(banque)}</Montant>
+        <Pastille couleur={VIOLET} jauge={jauges.banque ?? 0.46}>
+          {BUCKME}
         </Pastille>
       </Ligne>
       <Ligne>
-        <Montant>{formater(banque)}</Montant>
-        <Pastille arc>
-          <path d="M0 -6.2L5.2 -2.4V6.2H-5.2V-2.4Z" fill="#31f4d8" />
-          <text x="0" y="3.6" textAnchor="middle" fontFamily="Anton, sans-serif" fontSize="7.4" fill="#075a4e">
-            $
-          </text>
+        <Montant>{formater(liquide)}</Montant>
+        <Pastille couleur={VERT} jauge={jauges.liquide ?? liquide / LIQUIDE_MAX}>
+          {PORTEFEUILLE}
         </Pastille>
       </Ligne>
+      {planque !== null && (
+        <Ligne>
+          <Montant>{formater(planque)}</Montant>
+          <Pastille couleur="#3fe6cc" jauge={jauges.planque ?? 0.12}>
+            {PLANQUE}
+          </Pastille>
+        </Ligne>
+      )}
     </Bloc>
   );
 }

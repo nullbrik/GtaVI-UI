@@ -6,6 +6,7 @@ import { DemoRecherche } from './hud/DemoRecherche';
 import { Hud } from './hud/Hud';
 import { InfoVehicule } from './info-vehicule/InfoVehicule';
 import { Pause } from './pause/Pause';
+import { DemoRadio } from './radio/Radio';
 import type { Emplacement } from './roulette/roue';
 import { Roulette } from './roulette/Roulette';
 
@@ -51,6 +52,7 @@ export const ECRANS: readonly Ecran[] = [
     libelle: 'Boussole police',
     rendu: () => <Boussole cap={357} destination={{ cap: 17, distance: 4750 }} poursuite />,
   },
+  { cle: 'radio', libelle: 'Radio', rendu: () => <DemoRadio /> },
   { cle: 'pause', libelle: 'Menu pause', rendu: () => <Pause nouveautes={['boutique']} surChoix={RIEN} surFermeture={RIEN} /> },
   { cle: 'garde-robe', libelle: 'Garde-robe', rendu: () => <GardeRobe liquide={407} banque={2480} surFermeture={RIEN} /> },
   { cle: 'roulette', libelle: 'Roulette d’armes', rendu: () => <Roulette emplacements={EMPLACEMENTS} equipee={null} /> },

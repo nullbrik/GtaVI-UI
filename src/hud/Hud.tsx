@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { DemoDecouverteLieu } from '../lieu/DecouverteLieu';
 import { Argent } from './Argent';
 import { CadreMinimap } from './CadreMinimap';
 import { Gps } from './Gps';
@@ -31,10 +32,11 @@ export function Hud() {
       <CadreMinimap zone={ZONE_MINIMAP} carte />
       <Statuts vie={49} endurance={100} concentration={100} />
       <Recherche niveau={2} />
-      <Argent liquide={40} banque={1980} />
+      <Argent banque={15150} liquide={3146} planque={1980} />
       <Gps zone={ZONE_MINIMAP} manoeuvre="gauche" distance={94} />
       {presentation === null && <Voyants zone={ZONE_MINIMAP} decalage={decalage} />}
       <PresentationVehicule zone={ZONE_MINIMAP} presentation={presentation} decalage={decalage} />
+      <DemoDecouverteLieu ecart={presentation === null ? decalage + 1.1 + 2.55 + 0.74 : decalage + 0.2 + 7 + 2.95 + 0.74} />
     </>
   );
 }

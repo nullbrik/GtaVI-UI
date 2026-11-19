@@ -8,6 +8,8 @@ const Bandeau = styled.div`
   position: fixed;
   display: flex;
   height: ${HAUTEUR_GPS_VH}vh;
+  border-radius: 0.35vh;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
   pointer-events: none;
 `;
 
