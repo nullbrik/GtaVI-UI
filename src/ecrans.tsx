@@ -2,6 +2,7 @@ import { Bandage, Binoculars, Crosshair, Slice } from 'lucide-react';
 import type { ReactElement } from 'react';
 import { Boussole } from './boussole/Boussole';
 import { GardeRobe } from './garde-robe/GardeRobe';
+import { DemoRecherche } from './hud/DemoRecherche';
 import { Hud } from './hud/Hud';
 import { InfoVehicule } from './info-vehicule/InfoVehicule';
 import { Pause } from './pause/Pause';
@@ -43,6 +44,7 @@ export const ECRANS: readonly Ecran[] = [
       </>
     ),
   },
+  { cle: 'recherche', libelle: 'Étoiles de recherche', rendu: () => <DemoRecherche /> },
   { cle: 'boussole', libelle: 'Boussole', rendu: () => <Boussole cap={357} destination={{ cap: 17, distance: 4750 }} /> },
   {
     cle: 'boussole-police',
